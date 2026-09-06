@@ -3,8 +3,9 @@
 :root {
   --background: #f7f6f2;
   --foreground: #25262b;
+
   --accent: #5b72e8;
-  --soft-blue: #c6cde5;
+  --soft-blue: #dde4f6;
   --soft-beige: #eee2cd;
   --line: #d8d8d2;
 }
@@ -34,4 +35,143 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+/* --------------------------------
+   CURSOR GLOW
+-------------------------------- */
+
+.cursor-glow {
+  --mouse-x: 50vw;
+  --mouse-y: 50vh;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  background: radial-gradient(
+    circle 340px at var(--mouse-x) var(--mouse-y),
+    rgba(185, 203, 255, 0.42) 0%,
+    rgba(207, 218, 250, 0.22) 35%,
+    rgba(221, 228, 246, 0.08) 58%,
+    transparent 75%
+  );
+}
+
+/* --------------------------------
+   GRAIN
+-------------------------------- */
+
+.grain {
+  position: fixed;
+  inset: 0;
+
+  z-index: 50;
+
+  pointer-events: none;
+
+  opacity: 0.055;
+
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.5'/%3E%3C/svg%3E");
+
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* --------------------------------
+   INTERACTIVE ELEMENTS
+-------------------------------- */
+
+a {
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+a:hover {
+  opacity: 0.65;
+}
+
+/* Evitamos efectos de cursor en dispositivos táctiles */
+
+@media (hover: none) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/* --------------------------------
+   PROJECT CURSOR
+-------------------------------- */
+
+.project-cursor-arrow-enter {
+  display: inline-block;
+  animation: project-arrow-loop 2.2s linear infinite;
+  will-change: transform;
+}
+
+@keyframes project-arrow-loop {
+  0% {
+    transform: translateX(-1.5px);
+  }
+
+  25% {
+    transform: translateX(-0.5px);
+  }
+
+  50% {
+    transform: translateX(1.5px);
+  }
+
+  75% {
+    transform: translateX(0.5px);
+  }
+
+  100% {
+    transform: translateX(-1.5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-cursor-arrow-enter {
+    animation: none;
+  }
+}
+
+/* --------------------------------
+   PROJECT PREVIEW FLOAT
+-------------------------------- */
+
+.project-preview {
+  animation: project-preview-float 5.5s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes project-preview-float {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(calc(-50% - 4px)) translateX(2px) rotate(0.35deg);
+  }
+
+  50% {
+    transform: translateY(calc(-50% + 2px)) translateX(-2px) rotate(-0.25deg);
+  }
+
+  75% {
+    transform: translateY(calc(-50% - 2px)) translateX(1px) rotate(0.2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-preview {
+    animation: none;
+  }
 }

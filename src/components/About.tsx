@@ -39,7 +39,7 @@ export default function About() {
           </p>
 
           <p className="mt-5 text-sm leading-relaxed">
-            I like understanding how things work — from the first idea to the
+           <b> I like understanding how things work,</b> from the first idea to the
             final implementation.
           </p>
         </div>

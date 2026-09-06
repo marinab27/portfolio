@@ -1,8 +1,9 @@
+import HeroMark from "@/components/HeroMark";
+
 export default function Hero() {
   return (
-    <section className="grid grid-cols-12 gap-4 pt-24 md:pt-32">
-      {/* Texto introductorio */}
-      <div className="col-span-12 md:col-span-4 md:col-start-9 text-right">
+    <section className="relative grid grid-cols-12 gap-4 pt-24 md:pt-32">
+      <div className="col-span-12 text-right md:col-span-4 md:col-start-9">
         <p className="text-sm leading-tight">
           I&apos;m interested in what happens
           <br />
@@ -18,16 +19,18 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* Título */}
       <div className="col-span-12 mt-12 md:col-span-10 md:mt-4">
-        <h1 className="text-5xl font-normal leading-[0.95] tracking-[-0.04em] md:text-7xl lg:text-8xl">
-          Art Direction &amp;
+        <h1 className="relative z-10 text-5xl font-normal leading-[0.95] tracking-[-0.04em] md:text-7xl lg:text-8xl">
+          Art Direction{" "}
+          <span className="relative inline-block">
+            <HeroMark />
+            <span className="relative z-10">&amp;</span>
+          </span>
           <br />
           Digital Experiences
         </h1>
       </div>
 
-      {/* Información */}
       <div className="col-span-12 mt-10 grid grid-cols-12 gap-4 md:mt-12">
         <div className="col-span-4 md:col-span-3">
           <p className="mb-3 text-xs uppercase">Currently</p>
