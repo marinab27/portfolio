@@ -66,17 +66,24 @@ export default function SelectedWork() {
           return (
             <div
               key={project.title}
-              className="
+              className={`
+                relative
                 border-b
-                border-[var(--line)]
                 py-5
+                transition-colors
+                duration-300
                 md:grid
                 md:cursor-none
                 md:grid-cols-12
                 md:items-center
                 md:gap-4
                 md:py-5
-              "
+                ${
+                  isActive
+                    ? "border-[rgba(91,114,232,0.35)]"
+                    : "border-[var(--line)]"
+                }
+              `}
               onMouseEnter={() => setActiveProject(index)}
               onMouseLeave={() => setActiveProject(null)}
             >
@@ -97,29 +104,53 @@ export default function SelectedWork() {
                 </h3>
               </div>
 
-              {/* DESKTOP */}
+              {/* DESKTOP TITLE */}
               <h3
                 className={`
                   hidden
                   font-normal
                   transition-transform
-                  duration-300
-                  ease-out
+                  duration-500
+                  ease-[cubic-bezier(0.22,1,0.36,1)]
                   md:col-span-5
                   md:block
                   md:text-xl
                   md:leading-tight
-                  ${isActive ? "md:translate-x-1" : ""}
+                  ${isActive ? "md:translate-x-[6px]" : ""}
                 `}
               >
                 {project.title}
               </h3>
 
-              <p className="hidden text-xs uppercase md:col-span-3 md:block">
+              {/* DESKTOP CLIENT */}
+              <p
+                className={`
+                  hidden
+                  text-xs
+                  uppercase
+                  transition-opacity
+                  duration-300
+                  md:col-span-3
+                  md:block
+                  ${isActive ? "opacity-60" : "opacity-100"}
+                `}
+              >
                 {project.client}
               </p>
 
-              <p className="hidden text-xs uppercase md:col-span-4 md:block">
+              {/* DESKTOP CATEGORY */}
+              <p
+                className={`
+                  hidden
+                  text-xs
+                  uppercase
+                  transition-opacity
+                  duration-300
+                  md:col-span-4
+                  md:block
+                  ${isActive ? "opacity-60" : "opacity-100"}
+                `}
+              >
                 {project.category}
               </p>
             </div>
@@ -127,10 +158,11 @@ export default function SelectedWork() {
         })}
       </div>
 
-      {/* Floating project preview — desktop only */}
+      {/* FLOATING PREVIEW */}
       {activeProject !== null && projects[activeProject].image && (
         <div
           className="
+            project-preview-enter
             pointer-events-none
             fixed
             right-[8vw]
@@ -155,7 +187,7 @@ export default function SelectedWork() {
         </div>
       )}
 
-      {/* Custom cursor — desktop only */}
+      {/* CUSTOM CURSOR */}
       <div
         ref={cursorRef}
         aria-hidden="true"

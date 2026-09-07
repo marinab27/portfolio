@@ -67,12 +67,23 @@ export default function About() {
 
         <a
           href="#"
-          className="group mt-9 inline-flex items-center gap-4 text-sm underline underline-offset-4"
+          className="underline-link group mt-9 inline-flex items-center gap-4 text-sm"
         >
-          More About Me
+          <span className="underline-text">
+            More About Me
+            <span className="underline-line underline-line-first" />
+            <span className="underline-line underline-line-second" />
+          </span>
+
           <span
             aria-hidden="true"
-            className="text-[var(--accent)] transition-transform duration-300 ease-out group-hover:translate-x-1"
+            className="
+              text-[var(--accent)]
+              transition-transform
+              duration-300
+              ease-[cubic-bezier(0.22,1,0.36,1)]
+              group-hover:translate-x-1
+            "
           >
             →
           </span>
@@ -81,7 +92,7 @@ export default function About() {
 
       {/* TABLET + DESKTOP */}
       <div className="hidden grid-cols-12 items-center gap-x-5 md:grid lg:gap-x-10">
-        {/* Image */}
+        {/* IMAGE */}
         <div className="group relative col-span-5 col-start-1 lg:col-start-2">
           <div
             className="
@@ -125,7 +136,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Text */}
+        {/* TEXT */}
         <div className="col-span-6 col-start-7 lg:col-span-5 lg:col-start-8">
           <h2 className="max-w-[540px] text-[2.2rem] font-normal leading-[0.98] tracking-[-0.035em] lg:text-[clamp(2rem,3vw,3.2rem)]">
             I&apos;m Marina, an Art Director and Digital Designer based in
@@ -148,9 +159,13 @@ export default function About() {
 
           <a
             href="#"
-            className="group mt-8 inline-flex items-center gap-4 text-sm underline underline-offset-4 lg:mt-10 lg:text-base"
+            className="underline-link group mt-9 inline-flex items-center gap-4 text-sm md:mt-10 md:text-base"
           >
-            More About Me
+            <span className="underline-text">
+              More About Me
+              <span className="underline-line" />
+            </span>
+
             <span
               aria-hidden="true"
               className="text-[var(--accent)] transition-transform duration-300 ease-out group-hover:translate-x-1"

@@ -91,8 +91,10 @@ a {
     transform 180ms ease;
 }
 
-a:hover {
-  opacity: 0.65;
+a {
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
 /* Evitamos efectos de cursor en dispositivos táctiles */
@@ -172,6 +174,99 @@ a:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .project-preview {
+    animation: none;
+  }
+}
+
+/* --------------------------------
+   ANIMATED UNDERLINE
+-------------------------------- */
+
+.underline-text {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+.underline-line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background-color: var(--accent);
+  opacity: 0.75;
+
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Desktop / mouse only */
+
+@media (hover: hover) and (pointer: fine) {
+  .underline-link:hover .underline-line {
+    animation: underline-swipe 650ms cubic-bezier(0.76, 0, 0.24, 1);
+  }
+}
+
+@keyframes underline-swipe {
+  /* Línea completa */
+  0% {
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+
+  /* Se recoge hacia la derecha */
+  45% {
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+
+  /* Cambiamos el punto de origen cuando está oculta */
+  46% {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  /* Se vuelve a dibujar desde la izquierda */
+  100% {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .underline-link:hover .underline-line {
+    animation: none;
+  }
+}
+
+/* --------------------------------
+   PROJECT PREVIEW ENTER
+-------------------------------- */
+
+.project-preview-enter {
+  animation: project-preview-enter 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  will-change: transform, opacity;
+}
+
+@keyframes project-preview-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(calc(-50% + 10px)) scale(0.965);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-preview-enter {
     animation: none;
   }
 }
