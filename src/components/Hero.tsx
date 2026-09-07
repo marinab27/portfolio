@@ -2,25 +2,10 @@ import HeroMark from "@/components/HeroMark";
 
 export default function Hero() {
   return (
-    <section className="relative grid grid-cols-12 gap-4 pt-24 md:pt-32">
-      <div className="col-span-12 text-right md:col-span-4 md:col-start-9">
-        <p className="text-sm leading-tight">
-          I&apos;m interested in what happens
-          <br />
-          between an idea and the way
-          <br />
-          people experience it.
-        </p>
-
-        <p className="mt-8 text-sm font-semibold leading-tight">
-          From identities and campaigns
-          <br />
-          to interfaces and digital experiences.
-        </p>
-      </div>
-
-      <div className="col-span-12 mt-12 md:col-span-10 md:mt-4">
-        <h1 className="relative z-10 text-5xl font-normal leading-[0.95] tracking-[-0.04em] md:text-7xl lg:text-8xl">
+    <section className="relative grid grid-cols-12 gap-4 pt-16 md:pt-24 lg:pt-32">
+      {/* TITLE */}
+      <div className="col-span-12 md:order-2 md:col-span-10 md:mt-2 lg:mt-4">
+        <h1 className="relative z-10 text-[clamp(2.9rem,12vw,4.5rem)] font-normal leading-[0.9] tracking-[-0.045em] md:text-[4.6rem] lg:text-8xl">
           Art Direction{" "}
           <span className="relative inline-block">
             <HeroMark />
@@ -29,21 +14,46 @@ export default function Hero() {
           <br />
           Digital Experiences
         </h1>
+
+        {/* Mobile subtitle */}
+        <p className="mt-5 max-w-[290px] text-left text-sm font-medium leading-[1.3] md:hidden">
+          From identities and campaigns to interfaces and digital experiences.
+        </p>
       </div>
 
-      <div className="col-span-12 mt-10 grid grid-cols-12 gap-4 md:mt-12">
-        <div className="col-span-4 md:col-span-3">
-          <p className="mb-3 text-xs uppercase">Currently</p>
-          <p className="text-sm leading-tight">
+      {/* DESKTOP / TABLET INTRO */}
+      <div className="hidden md:order-1 md:col-span-5 md:col-start-8 md:block md:text-right lg:col-span-4 lg:col-start-9">
+        <p className="text-sm leading-tight">
+          I&apos;m interested in what happens
+          <br />
+          between an idea and the way
+          <br />
+          people experience it.
+        </p>
+
+        <p className="mt-6 text-sm font-semibold leading-tight lg:mt-8">
+          From identities and campaigns
+          <br />
+          to interfaces and digital experiences.
+        </p>
+      </div>
+
+      {/* INFO */}
+      <div className="col-span-12 mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:order-3 md:mt-10 md:grid-cols-12 md:gap-4 lg:mt-12">
+        <div className="col-span-1 md:col-span-3">
+          <p className="mb-3 text-[10px] uppercase md:text-xs">Currently</p>
+
+          <p className="text-xs leading-[1.35] md:text-sm md:leading-tight">
             Art Director &amp; Digital
             <br />
             Designer @ One&apos;s
           </p>
         </div>
 
-        <div className="col-span-4 md:col-span-3">
-          <p className="mb-3 text-xs uppercase">Disciplines</p>
-          <p className="text-sm leading-tight">
+        <div className="col-span-1 md:col-span-3">
+          <p className="mb-3 text-[10px] uppercase md:text-xs">Disciplines</p>
+
+          <p className="text-xs leading-[1.35] md:text-sm md:leading-tight">
             Art Direction
             <br />
             Digital Design
@@ -52,10 +62,10 @@ export default function Hero() {
           </p>
         </div>
 
-        <div className="col-span-4 md:col-span-3">
-          <p className="mb-3 text-xs uppercase">Contact</p>
+        <div className="col-span-2 md:col-span-3">
+          <p className="mb-3 text-[10px] uppercase md:text-xs">Contact</p>
 
-          <div className="flex flex-col text-sm leading-tight underline">
+          <div className="flex gap-4 text-xs leading-tight underline md:flex-col md:gap-0 md:text-sm">
             <a href="mailto:TUEMAIL">Email</a>
             <a href="#">LinkedIn</a>
             <a href="/cv.pdf">CV</a>

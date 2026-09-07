@@ -4,54 +4,161 @@ export default function About() {
   return (
     <section
       id="about"
-      className="grid grid-cols-12 items-center gap-6 py-32 md:py-40"
+      className="relative mx-auto mt-20 max-w-[1280px] md:mt-32 lg:mt-40"
     >
-      {/* Imagen */}
-      <div className="relative col-span-12 md:col-span-4 md:col-start-2">
-        <div className="relative aspect-[4/3] w-full max-w-[480px] overflow-hidden">
-          <Image
-            src="/about/marina.png"
-            alt="Marina, Art Director and Digital Designer"
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 480px"
-          />
-        </div>
-
-        {/* Anotación provisional */}
-        <div className="absolute -right-20 -top-12 hidden md:block">
-          <p className="rotate-[-4deg] text-3xl italic">that&apos;s me</p>
-
-          <span className="absolute -left-8 top-10 text-3xl">↙</span>
-        </div>
-      </div>
-
-      {/* Texto */}
-      <div className="col-span-12 md:col-span-4 md:col-start-8">
-        <h2 className="text-3xl font-normal leading-[1.05] tracking-tight md:text-4xl">
+      {/* MOBILE */}
+      <div className="md:hidden">
+        <h2 className="text-[1.75rem] font-normal leading-[0.98] tracking-[-0.035em]">
           I&apos;m Marina, an Art Director and Digital Designer based in Madrid.
         </h2>
 
-        <div className="mt-6 max-w-[500px]">
-          <p className="text-sm leading-relaxed">
-            With a background in Fine Arts, I gradually moved into digital
-            design, UX/UI and web development.
-          </p>
+        <p className="mt-7 text-sm leading-[1.5]">
+          With a background in Fine Arts, I work across visual identities,
+          digital design and interactive experiences.
+        </p>
 
-          <p className="mt-5 text-sm leading-relaxed">
-           <b> I like understanding how things work,</b> from the first idea to the
-            final implementation.
-          </p>
+        <div className="group relative mt-16 translate-x-3">
+          <div
+            className="
+              absolute
+              -top-14
+              right-0
+              z-10
+              w-[140px]
+              transition-transform
+              duration-700
+              ease-out
+              group-hover:-translate-y-[3px]
+              group-hover:translate-x-[2px]
+            "
+          >
+            <Image
+              src="/about/thats-me.png"
+              alt="that's me"
+              width={340}
+              height={160}
+              className="h-auto w-full"
+            />
+          </div>
+
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <Image
+              src="/about/marina.png"
+              alt="Marina"
+              fill
+              sizes="100vw"
+              className="
+                object-cover
+                transition-transform
+                duration-[900ms]
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                group-hover:scale-[1.025]
+              "
+            />
+          </div>
         </div>
 
-        <a
-          href="/about"
-          className="mt-8 inline-flex items-center gap-3 text-sm"
-        >
-          <span className="underline underline-offset-4">More About Me</span>
+        <p className="mt-7 text-sm leading-[1.5]">
+          <strong className="font-semibold">
+            I like understanding how things work,
+          </strong>{" "}
+          from the first idea to the final implementation.
+        </p>
 
-          <span className="text-[var(--accent)]">→</span>
+        <a
+          href="#"
+          className="group mt-9 inline-flex items-center gap-4 text-sm underline underline-offset-4"
+        >
+          More About Me
+          <span
+            aria-hidden="true"
+            className="text-[var(--accent)] transition-transform duration-300 ease-out group-hover:translate-x-1"
+          >
+            →
+          </span>
         </a>
+      </div>
+
+      {/* TABLET + DESKTOP */}
+      <div className="hidden grid-cols-12 items-center gap-x-5 md:grid lg:gap-x-10">
+        {/* Image */}
+        <div className="group relative col-span-5 col-start-1 lg:col-start-2">
+          <div
+            className="
+              absolute
+              -top-16
+              right-0
+              z-10
+              w-[150px]
+              transition-transform
+              duration-700
+              ease-out
+              group-hover:-translate-y-[3px]
+              group-hover:translate-x-[2px]
+              lg:-top-20
+              lg:w-[170px]
+            "
+          >
+            <Image
+              src="/about/thats-me.png"
+              alt="that's me"
+              width={340}
+              height={160}
+              className="h-auto w-full"
+            />
+          </div>
+
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <Image
+              src="/about/marina.png"
+              alt="Marina"
+              fill
+              sizes="(max-width: 1024px) 45vw, 42vw"
+              className="
+                object-cover
+                transition-transform
+                duration-[900ms]
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                group-hover:scale-[1.025]
+              "
+            />
+          </div>
+        </div>
+
+        {/* Text */}
+        <div className="col-span-6 col-start-7 lg:col-span-5 lg:col-start-8">
+          <h2 className="max-w-[540px] text-[2.2rem] font-normal leading-[0.98] tracking-[-0.035em] lg:text-[clamp(2rem,3vw,3.2rem)]">
+            I&apos;m Marina, an Art Director and Digital Designer based in
+            Madrid.
+          </h2>
+
+          <div className="mt-7 max-w-[520px] space-y-5 text-sm leading-[1.5] lg:mt-8 lg:space-y-6 lg:text-base">
+            <p>
+              With a background in Fine Arts, I work across visual identities,
+              digital design and interactive experiences.
+            </p>
+
+            <p>
+              <strong className="font-semibold">
+                I like understanding how things work,
+              </strong>{" "}
+              from the first idea to the final implementation.
+            </p>
+          </div>
+
+          <a
+            href="#"
+            className="group mt-8 inline-flex items-center gap-4 text-sm underline underline-offset-4 lg:mt-10 lg:text-base"
+          >
+            More About Me
+            <span
+              aria-hidden="true"
+              className="text-[var(--accent)] transition-transform duration-300 ease-out group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </a>
+        </div>
       </div>
     </section>
   );

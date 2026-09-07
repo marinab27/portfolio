@@ -1,13 +1,40 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer
       id="contact"
-      className="relative overflow-hidden px-5 pb-8 pt-24 md:px-10 md:pt-28 lg:px-20 xl:px-32"
+      className="
+    relative
+    mt-0
+    overflow-hidden
+    px-5
+    pb-8
+    pt-16
+md:mt-0
+md:px-10
+md:pt-16
+lg:mt-8
+lg:px-20
+lg:pt-20
+xl:mt-12
+xl:px-32
+  "
     >
       <div className="relative z-10">
-        <p className="mb-2 text-xl md:text-2xl">Let&apos;s talk</p>
+        <p className="mb-4 text-base md:text-lg lg:text-xl">Let&apos;s talk</p>
 
-        <h2 className="max-w-[1050px] text-[clamp(3.5rem,6vw,7rem)] font-normal leading-[0.95] tracking-[-0.04em]">
+        <h2
+          className="
+            max-w-[1000px]
+            text-[clamp(3rem,13vw,4.5rem)]
+            font-normal
+            leading-[0.93]
+            tracking-[-0.045em]
+            md:text-[3.8rem]
+            lg:text-[clamp(3.5rem,6vw,6.8rem)]
+          "
+        >
           Have something
           <br />
           weird, ambitious
@@ -15,37 +42,134 @@ export default function Footer() {
           or beautiful in mind?
         </h2>
 
-        <div className="mt-16 grid grid-cols-12 items-end gap-4 md:mt-20">
+        <div className="mt-14 grid grid-cols-12 items-end gap-x-8 gap-y-4 md:mt-16 lg:mt-20">
           <a
             href="mailto:TUEMAIL"
-            className="col-span-12 inline-flex items-center gap-3 text-3xl underline underline-offset-4 md:col-span-4"
+            className="
+              group
+              col-span-12
+              inline-flex
+              w-fit
+              items-center
+              gap-3
+              text-xl
+              md:col-span-4
+              md:text-2xl
+              lg:text-3xl
+            "
           >
-            Say hello
-            <span className="text-[var(--accent)]">↗</span>
+            <span className="border-b border-current">Say hello</span>
+
+            <span
+              aria-hidden="true"
+              className="
+                text-[var(--accent)]
+                transition-transform
+                duration-300
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                group-hover:translate-x-[3px]
+                group-hover:-translate-y-[3px]
+              "
+            >
+              ↗
+            </span>
           </a>
 
           <a
             href="#"
-            className="col-span-6 inline-flex items-center gap-3 text-2xl underline underline-offset-4 md:col-span-2 md:col-start-8"
+            className="
+              group
+              col-span-6
+              inline-flex
+              w-fit
+              items-center
+              gap-3
+              text-base
+              md:col-span-2
+              md:col-start-8
+              md:text-xl
+              lg:text-2xl
+            "
           >
-            LinkedIn
-            <span className="text-[var(--accent)]">↗</span>
+            <span className="border-b border-current">LinkedIn</span>
+
+            <span
+              aria-hidden="true"
+              className="
+                text-[var(--accent)]
+                transition-transform
+                duration-300
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                group-hover:translate-x-[3px]
+                group-hover:-translate-y-[3px]
+              "
+            >
+              ↗
+            </span>
           </a>
 
           <a
             href="#"
-            className="col-span-6 inline-flex items-center gap-3 text-2xl underline underline-offset-4 md:col-span-2"
+            className="
+              group
+              col-span-4
+              inline-flex
+              w-fit
+              items-center
+              gap-3
+              text-base
+              md:col-span-2
+              md:col-start-11
+              md:text-xl
+              lg:col-start-auto
+              lg:text-2xl
+            "
           >
-            CV
-            <span className="text-[var(--accent)]">↗</span>
+            <span className="border-b border-current">CV</span>
+
+            <span
+              aria-hidden="true"
+              className="
+                text-[var(--accent)]
+                transition-transform
+                duration-300
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                group-hover:translate-x-[3px]
+                group-hover:-translate-y-[3px]
+              "
+            >
+              ↗
+            </span>
           </a>
         </div>
       </div>
 
-      <div className="relative z-10 mt-12 flex items-end justify-between border-t border-black/15 pt-8">
-        <p className="text-2xl italic">marina b.</p>
+      <div
+        className="
+          relative
+          z-10
+          mt-10
+          flex
+          items-end
+          justify-between
+          border-t
+          border-black/15
+          pt-6
+          md:mt-12
+          md:pt-7
+        "
+      >
+        <Image
+          src="/logo/marina-b.png"
+          alt="Marina B."
+          width={220}
+          height={80}
+          className="h-auto w-[90px] md:w-[105px] lg:w-[115px]"
+        />
 
-        <p className="text-xs uppercase">Madrid | Spain | 2026</p>
+        <p className="text-[9px] uppercase md:text-[10px] lg:text-xs">
+          Madrid | Spain | 2026
+        </p>
       </div>
     </footer>
   );

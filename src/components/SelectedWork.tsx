@@ -32,90 +32,118 @@ const projects = [
 
 export default function SelectedWork() {
   const [activeProject, setActiveProject] = useState<number | null>(null);
-  const [arrowKey, setArrowKey] = useState(0);
-
   const cursorRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    event: React.MouseEvent<HTMLElement, MouseEvent>,
   ) => {
     if (!cursorRef.current) return;
 
     cursorRef.current.style.transform = `
-      translate3d(${event.clientX}px, ${event.clientY}px, 0)
+      translate3d(
+        ${event.clientX}px,
+        ${event.clientY}px,
+        0
+      )
       translate(-50%, -50%)
     `;
-  };
-
-  const handleMouseEnter = (index: number) => {
-    setActiveProject(index);
-    setArrowKey((prev) => prev + 1);
-  };
-
-  const handleMouseLeave = () => {
-    setActiveProject(null);
   };
 
   return (
     <section
       id="projects"
-      className="relative mt-36 md:mt-44"
+      className="relative mt-24 md:mt-44"
       onMouseMove={handleMouseMove}
     >
-      <h2 className="mb-8 text-4xl font-normal tracking-tight md:text-5xl">
+      <h2 className="mb-7 text-[2.1rem] font-normal tracking-[-0.035em] md:mb-8 md:text-5xl">
         Selected Work
       </h2>
 
-      <div className="border-t border-[var(--line)]">
+      <div className="ml-[10px] border-t border-[var(--line)] md:ml-0">
         {projects.map((project, index) => {
           const isActive = activeProject === index;
 
           return (
             <div
               key={project.title}
-              className="grid cursor-none grid-cols-12 items-center gap-4 border-b border-[var(--line)] py-5"
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
+              className="
+                border-b
+                border-[var(--line)]
+                py-5
+                md:grid
+                md:cursor-none
+                md:grid-cols-12
+                md:items-center
+                md:gap-4
+                md:py-5
+              "
+              onMouseEnter={() => setActiveProject(index)}
+              onMouseLeave={() => setActiveProject(null)}
             >
+              {/* MOBILE */}
+              <div className="md:hidden">
+                <div className="mb-2 flex items-center gap-2 text-[10px] uppercase leading-none">
+                  <span>{project.client}</span>
+
+                  <span aria-hidden="true" className="opacity-50">
+                    |
+                  </span>
+
+                  <span>{project.category}</span>
+                </div>
+
+                <h3 className="text-[17px] font-normal leading-[1.15] tracking-[-0.02em]">
+                  {project.title}
+                </h3>
+              </div>
+
+              {/* DESKTOP */}
               <h3
                 className={`
-                  col-span-5
-                  text-xl
+                  hidden
                   font-normal
                   transition-transform
                   duration-300
                   ease-out
-                  ${isActive ? "translate-x-1" : ""}
+                  md:col-span-5
+                  md:block
+                  md:text-xl
+                  md:leading-tight
+                  ${isActive ? "md:translate-x-1" : ""}
                 `}
               >
                 {project.title}
               </h3>
 
-              <p className="col-span-3 text-xs uppercase">{project.client}</p>
+              <p className="hidden text-xs uppercase md:col-span-3 md:block">
+                {project.client}
+              </p>
 
-              <p className="col-span-4 text-xs uppercase">{project.category}</p>
+              <p className="hidden text-xs uppercase md:col-span-4 md:block">
+                {project.category}
+              </p>
             </div>
           );
         })}
       </div>
 
+      {/* Floating project preview — desktop only */}
       {activeProject !== null && projects[activeProject].image && (
         <div
           className="
-      project-preview
-      pointer-events-none
-      fixed
-      right-[8vw]
-      top-1/2
-      z-30
-      hidden
-      w-[320px]
-      -translate-y-1/2
-      overflow-hidden
-      md:block
-      lg:w-[380px]
-      xl:w-[420px]
-    "
+            pointer-events-none
+            fixed
+            right-[8vw]
+            top-1/2
+            z-30
+            hidden
+            w-[320px]
+            -translate-y-1/2
+            overflow-hidden
+            md:block
+            lg:w-[380px]
+            xl:w-[420px]
+          "
         >
           <Image
             src={projects[activeProject].image}
@@ -127,6 +155,7 @@ export default function SelectedWork() {
         </div>
       )}
 
+      {/* Custom cursor — desktop only */}
       <div
         ref={cursorRef}
         aria-hidden="true"
@@ -155,14 +184,7 @@ export default function SelectedWork() {
           ${activeProject !== null ? "opacity-100" : "opacity-0"}
         `}
       >
-        {activeProject !== null && (
-          <span
-            key={arrowKey}
-            className="project-cursor-arrow-enter inline-block"
-          >
-            →
-          </span>
-        )}
+        <span className="project-cursor-arrow-enter inline-block">→</span>
       </div>
     </section>
   );
