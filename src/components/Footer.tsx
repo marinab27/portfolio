@@ -1,38 +1,152 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+import FooterStar from "@/components/marks/FooterStar";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        "(prefers-reduced-motion: no-preference)",
+        () => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: footerRef.current,
+              start: "top 82%",
+              once: true,
+            },
+          });
+
+          // LET'S TALK
+          tl.from(".footer-kicker", {
+            opacity: 0,
+            y: 10,
+            duration: 0.5,
+            ease: "power3.out",
+          });
+
+          // MAIN TITLE
+          tl.from(
+            ".footer-title",
+            {
+              opacity: 0,
+              y: 24,
+              duration: 0.85,
+              ease: "power3.out",
+            },
+            "-=0.25",
+          );
+
+          // STAR
+          // Sin opacity para que nunca pueda quedarse invisible.
+          tl.from(
+            ".footer-star",
+            {
+              scale: 0.94,
+              y: 18,
+              duration: 1.1,
+              ease: "power3.out",
+              transformOrigin: "center center",
+            },
+            "-=0.65",
+          );
+
+          // LINKS
+          // Importante: NO animamos opacity.
+          tl.from(
+            ".footer-link",
+            {
+              y: 10,
+              duration: 0.55,
+              stagger: 0.08,
+              ease: "power3.out",
+            },
+            "-=0.55",
+          );
+
+          // BOTTOM
+          // Tampoco animamos opacity.
+          tl.from(
+            ".footer-bottom",
+            {
+              y: 8,
+              duration: 0.5,
+              ease: "power3.out",
+            },
+            "-=0.25",
+          );
+        },
+      );
+
+      return () => mm.revert();
+    },
+    { scope: footerRef },
+  );
+
   return (
     <footer
+      ref={footerRef}
       id="contact"
       className="
-    relative
-    mt-0
-    overflow-hidden
-    px-5
-    pb-8
-    pt-16
-md:mt-0
-md:px-10
-md:pt-16
-lg:mt-8
-lg:px-20
-lg:pt-20
-xl:mt-12
-xl:px-32
-  "
+        relative mt-0 overflow-hidden
+        px-5 pb-8 pt-16
+        md:px-10 md:pt-24
+        lg:px-20
+        xl:px-32
+      "
     >
-      <div className="relative z-10">
-        <p className="mb-4 text-base md:text-lg lg:text-xl">Let&apos;s talk</p>
+      {/* STAR BACKGROUND */}
+      <div
+        aria-hidden="true"
+        className="
+          footer-star
+          pointer-events-none
+          absolute
+          bottom-[-125px]
+          left-1/2
+          z-0
+          h-[300px]
+          w-[430px]
+          -translate-x-1/2
+
+          md:bottom-[-170px]
+          md:h-[430px]
+          md:w-[660px]
+
+          lg:bottom-[-210px]
+          lg:h-[520px]
+          lg:w-[820px]
+        "
+      >
+        <FooterStar className="block h-full w-full" />
+      </div>
+
+      {/* MAIN CONTENT */}
+      <div className="relative z-20">
+        <p className="footer-kicker mb-4 text-base md:text-xl">
+          Let&apos;s talk
+        </p>
 
         <h2
           className="
+            footer-title
             max-w-[1000px]
             text-[clamp(3rem,13vw,4.5rem)]
             font-normal
             leading-[0.93]
             tracking-[-0.045em]
-            md:text-[3.8rem]
-            lg:text-[clamp(3.5rem,6vw,6.8rem)]
+            md:text-[clamp(3.5rem,6vw,6.8rem)]
           "
         >
           Have something
@@ -42,10 +156,21 @@ xl:px-32
           or beautiful in mind?
         </h2>
 
-        <div className="mt-14 grid grid-cols-12 items-end gap-x-8 gap-y-4 md:mt-16 lg:mt-20">
+        {/* LINKS */}
+        <div
+          className="
+            relative z-20
+            mt-14
+            grid grid-cols-12
+            items-end gap-4
+            md:mt-20
+          "
+        >
+          {/* SAY HELLO */}
           <a
             href="mailto:TUEMAIL"
             className="
+              footer-link
               group
               col-span-12
               inline-flex
@@ -54,11 +179,12 @@ xl:px-32
               gap-3
               text-xl
               md:col-span-4
-              md:text-2xl
-              lg:text-3xl
+              md:text-3xl
             "
           >
-            <span className="border-b border-current">Say hello</span>
+            <span className="animated-underline">
+              Say hello
+            </span>
 
             <span
               aria-hidden="true"
@@ -75,9 +201,11 @@ xl:px-32
             </span>
           </a>
 
+          {/* LINKEDIN */}
           <a
             href="#"
             className="
+              footer-link
               group
               col-span-6
               inline-flex
@@ -87,11 +215,12 @@ xl:px-32
               text-base
               md:col-span-2
               md:col-start-8
-              md:text-xl
-              lg:text-2xl
+              md:text-2xl
             "
           >
-            <span className="border-b border-current">LinkedIn</span>
+            <span className="animated-underline">
+              LinkedIn
+            </span>
 
             <span
               aria-hidden="true"
@@ -108,24 +237,25 @@ xl:px-32
             </span>
           </a>
 
+          {/* CV */}
           <a
-            href="#"
+            href="/cv.pdf"
             className="
+              footer-link
               group
-              col-span-4
+              col-span-6
               inline-flex
               w-fit
               items-center
               gap-3
               text-base
               md:col-span-2
-              md:col-start-11
-              md:text-xl
-              lg:col-start-auto
-              lg:text-2xl
+              md:text-2xl
             "
           >
-            <span className="border-b border-current">CV</span>
+            <span className="animated-underline">
+              CV
+            </span>
 
             <span
               aria-hidden="true"
@@ -144,16 +274,15 @@ xl:px-32
         </div>
       </div>
 
+      {/* FOOTER BOTTOM */}
       <div
         className="
-          relative
-          z-10
+          footer-bottom
+          relative z-20
           mt-10
-          flex
-          items-end
+          flex items-end
           justify-between
-          border-t
-          border-black/15
+          border-t border-black/15
           pt-6
           md:mt-12
           md:pt-7
@@ -164,10 +293,10 @@ xl:px-32
           alt="Marina B."
           width={220}
           height={80}
-          className="h-auto w-[90px] md:w-[105px] lg:w-[115px]"
+          className="h-auto w-[90px] md:w-[115px]"
         />
 
-        <p className="text-[9px] uppercase md:text-[10px] lg:text-xs">
+        <p className="text-[9px] uppercase md:text-xs">
           Madrid | Spain | 2026
         </p>
       </div>

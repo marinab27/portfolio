@@ -4,6 +4,7 @@ import SelectedWork from "@/components/SelectedWork";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import InteractiveBackground from "@/components/InteractiveBackground";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   return (
@@ -23,6 +24,8 @@ export default function Home() {
 
         <Footer />
       </div>
+
+      <BackToTop />
     </>
   );
 }

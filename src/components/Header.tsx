@@ -37,7 +37,27 @@ export default function Header() {
 
         {/* CONTACT — DESKTOP */}
         <div className="hidden text-right text-xs uppercase md:col-span-3 md:block">
-          <a href="#contact">Let&apos;s talk →</a>
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2"
+          >
+            <span className="animated-underline">
+              Let&apos;s talk
+            </span>
+
+            <span
+              aria-hidden="true"
+              className="
+      text-[var(--accent)]
+      transition-transform
+      duration-300
+      ease-[cubic-bezier(0.22,1,0.36,1)]
+      group-hover:translate-x-1
+    "
+            >
+              →
+            </span>
+          </a>
         </div>
 
         {/* HAMBURGER — MOBILE */}
@@ -78,10 +98,9 @@ export default function Header() {
           duration-500
           ease-[cubic-bezier(0.22,1,0.36,1)]
           md:hidden
-          ${
-            menuOpen
-              ? "mt-10 max-h-[360px] opacity-100"
-              : "mt-0 max-h-0 opacity-0"
+          ${menuOpen
+            ? "mt-10 max-h-[360px] opacity-100"
+            : "mt-0 max-h-0 opacity-0"
           }
         `}
       >

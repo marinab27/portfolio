@@ -8,7 +8,15 @@
   --soft-blue: #dde4f6;
   --soft-beige: #eee2cd;
   --line: #d8d8d2;
+
+  /* Motion system */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-swipe: cubic-bezier(0.76, 0, 0.24, 1);
 }
+
+/* --------------------------------
+   RESET / BASE
+-------------------------------- */
 
 * {
   box-sizing: border-box;
@@ -20,8 +28,10 @@ html {
 
 body {
   margin: 0;
+
   background: var(--background);
   color: var(--foreground);
+
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -35,6 +45,40 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+/* --------------------------------
+   SELECTION
+-------------------------------- */
+
+::selection {
+  background: var(--soft-blue);
+  color: var(--foreground);
+}
+
+/* --------------------------------
+   GLOBAL INTERACTION
+-------------------------------- */
+
+a,
+button {
+  transition:
+    opacity 180ms ease,
+    transform 300ms var(--ease-out);
+}
+
+/* --------------------------------
+   ACCESSIBILITY / KEYBOARD
+-------------------------------- */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 5px;
 }
 
 /* --------------------------------
@@ -52,13 +96,11 @@ select {
 
   pointer-events: none;
 
-  background: radial-gradient(
-    circle 340px at var(--mouse-x) var(--mouse-y),
-    rgba(185, 203, 255, 0.42) 0%,
-    rgba(207, 218, 250, 0.22) 35%,
-    rgba(221, 228, 246, 0.08) 58%,
-    transparent 75%
-  );
+  background: radial-gradient(circle 340px at var(--mouse-x) var(--mouse-y),
+      rgba(185, 203, 255, 0.42) 0%,
+      rgba(207, 218, 250, 0.22) 35%,
+      rgba(221, 228, 246, 0.08) 58%,
+      transparent 75%);
 }
 
 /* --------------------------------
@@ -82,64 +124,12 @@ select {
 }
 
 /* --------------------------------
-   INTERACTIVE ELEMENTS
+   TOUCH DEVICES
 -------------------------------- */
-
-a {
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease;
-}
-
-a {
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease;
-}
-
-/* Evitamos efectos de cursor en dispositivos táctiles */
 
 @media (hover: none) {
   .cursor-glow {
     display: none;
-  }
-}
-
-/* --------------------------------
-   PROJECT CURSOR
--------------------------------- */
-
-.project-cursor-arrow-enter {
-  display: inline-block;
-  animation: project-arrow-loop 2.2s linear infinite;
-  will-change: transform;
-}
-
-@keyframes project-arrow-loop {
-  0% {
-    transform: translateX(-1.5px);
-  }
-
-  25% {
-    transform: translateX(-0.5px);
-  }
-
-  50% {
-    transform: translateX(1.5px);
-  }
-
-  75% {
-    transform: translateX(0.5px);
-  }
-
-  100% {
-    transform: translateX(-1.5px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-cursor-arrow-enter {
-    animation: none;
   }
 }
 
@@ -149,32 +139,33 @@ a {
 
 .project-preview {
   animation: project-preview-float 5.5s ease-in-out infinite;
+
   transform-origin: center;
+
   will-change: transform;
 }
 
 @keyframes project-preview-float {
+
   0%,
   100% {
-    transform: translateY(-50%) translateX(0) rotate(0deg);
+    transform:
+      translateY(-50%) translateX(0) rotate(0deg);
   }
 
   25% {
-    transform: translateY(calc(-50% - 4px)) translateX(2px) rotate(0.35deg);
+    transform:
+      translateY(calc(-50% - 4px)) translateX(2px) rotate(0.35deg);
   }
 
   50% {
-    transform: translateY(calc(-50% + 2px)) translateX(-2px) rotate(-0.25deg);
+    transform:
+      translateY(calc(-50% + 2px)) translateX(-2px) rotate(-0.25deg);
   }
 
   75% {
-    transform: translateY(calc(-50% - 2px)) translateX(1px) rotate(0.2deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-preview {
-    animation: none;
+    transform:
+      translateY(calc(-50% - 2px)) translateX(1px) rotate(0.2deg);
   }
 }
 
@@ -182,13 +173,16 @@ a {
    ANIMATED UNDERLINE
 -------------------------------- */
 
-.underline-text {
+.animated-underline {
   position: relative;
   display: inline-block;
+
   padding-bottom: 3px;
 }
 
-.underline-line {
+.animated-underline::after {
+  content: "";
+
   position: absolute;
   left: 0;
   bottom: 0;
@@ -203,43 +197,35 @@ a {
   transform-origin: left center;
 }
 
-/* Desktop / mouse only */
+/* Desktop / mouse */
 
 @media (hover: hover) and (pointer: fine) {
-  .underline-link:hover .underline-line {
-    animation: underline-swipe 650ms cubic-bezier(0.76, 0, 0.24, 1);
+
+  .animated-underline:hover::after,
+  .group:hover .animated-underline::after {
+    animation: underline-swipe 650ms var(--ease-swipe);
   }
 }
 
 @keyframes underline-swipe {
-  /* Línea completa */
   0% {
     transform: scaleX(1);
     transform-origin: right center;
   }
 
-  /* Se recoge hacia la derecha */
   45% {
     transform: scaleX(0);
     transform-origin: right center;
   }
 
-  /* Cambiamos el punto de origen cuando está oculta */
   46% {
     transform: scaleX(0);
     transform-origin: left center;
   }
 
-  /* Se vuelve a dibujar desde la izquierda */
   100% {
     transform: scaleX(1);
     transform-origin: left center;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .underline-link:hover .underline-line {
-    animation: none;
   }
 }
 
@@ -248,7 +234,7 @@ a {
 -------------------------------- */
 
 .project-preview-enter {
-  animation: project-preview-enter 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: project-preview-enter 500ms var(--ease-out) both;
 
   will-change: transform, opacity;
 }
@@ -256,17 +242,38 @@ a {
 @keyframes project-preview-enter {
   0% {
     opacity: 0;
-    transform: translateY(calc(-50% + 10px)) scale(0.965);
+
+    transform:
+      translateY(calc(-50% + 10px)) scale(0.965);
   }
 
   100% {
     opacity: 1;
-    transform: translateY(-50%) scale(1);
+
+    transform:
+      translateY(-50%) scale(1);
   }
 }
 
+/* --------------------------------
+   REDUCED MOTION
+-------------------------------- */
+
 @media (prefers-reduced-motion: reduce) {
-  .project-preview-enter {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+
+  .project-preview,
+  .project-preview-enter,
+  .animated-underline:hover::after,
+  .group:hover .animated-underline::after {
     animation: none;
   }
 }
