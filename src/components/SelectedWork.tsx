@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -14,24 +15,28 @@ const projects = [
     client: "Fujifilm",
     category: "Art Direction",
     image: "/projects/fujikina-home.png",
+    href: "/projects/fujikina",
   },
   {
     title: "Sumérgete en la Magia",
     client: "Disney",
     category: "Digital Experience",
     image: null,
+    href: "#",
   },
   {
     title: "LABOLA Digital Agency",
     client: "LABOLA",
     category: "Web Design",
     image: null,
+    href: "#",
   },
   {
     title: "Fibritel",
     client: "Fibritel",
     category: "UX/UI + Web",
     image: null,
+    href: "#",
   },
 ];
 
@@ -63,10 +68,15 @@ export default function SelectedWork() {
             ease: "power3.out",
           });
 
+          /*
+           * IMPORTANTE:
+           * No animamos opacity aquí.
+           * Así las filas nunca pueden quedarse invisibles
+           * si ScrollTrigger se recalcula o cambia la navegación.
+           */
           timeline.from(
             ".selected-work-row",
             {
-              opacity: 0,
               y: 16,
               duration: 0.65,
               stagger: 0.09,
@@ -109,12 +119,17 @@ export default function SelectedWork() {
           const isActive = activeProject === index;
 
           return (
-            <div
+            <Link
               key={project.title}
+              href={project.href}
               className={`
                 selected-work-row
-                relative border-b py-5
-                transition-colors duration-300
+                relative
+                block
+                border-b
+                py-5
+                transition-colors
+                duration-300
 
                 md:grid
                 md:cursor-none
@@ -206,7 +221,7 @@ export default function SelectedWork() {
               >
                 {project.category}
               </p>
-            </div>
+            </Link>
           );
         })}
       </div>
