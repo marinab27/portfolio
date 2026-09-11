@@ -17,7 +17,7 @@ export default function Home() {
         <SelectedWork />
       </main>
 
-      <div className="relative z-10 bg-gradient-to-b from-[#F7F6F2]/0 via-[#F2F3F8]/70 to-[#DDE4F6]">
+      <div className="about-footer-gradient relative z-10">
         <div className="px-5 md:px-10 lg:px-20 xl:px-32">
           <About />
         </div>

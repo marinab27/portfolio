@@ -28,7 +28,6 @@ export default function Footer() {
             },
           });
 
-          // LET'S TALK
           tl.from(".footer-kicker", {
             opacity: 0,
             y: 10,
@@ -36,7 +35,6 @@ export default function Footer() {
             ease: "power3.out",
           });
 
-          // MAIN TITLE
           tl.from(
             ".footer-title",
             {
@@ -48,12 +46,10 @@ export default function Footer() {
             "-=0.25",
           );
 
-          // STAR
-          // Sin opacity para que nunca pueda quedarse invisible.
           tl.from(
             ".footer-star",
             {
-              scale: 0.94,
+              scale: 0.96,
               y: 18,
               duration: 1.1,
               ease: "power3.out",
@@ -62,8 +58,6 @@ export default function Footer() {
             "-=0.65",
           );
 
-          // LINKS
-          // Importante: NO animamos opacity.
           tl.from(
             ".footer-link",
             {
@@ -75,8 +69,6 @@ export default function Footer() {
             "-=0.55",
           );
 
-          // BOTTOM
-          // Tampoco animamos opacity.
           tl.from(
             ".footer-bottom",
             {
@@ -99,40 +91,46 @@ export default function Footer() {
       ref={footerRef}
       id="contact"
       className="
-        relative mt-0 overflow-hidden
-        px-5 pb-8 pt-16
-        md:px-10 md:pt-24
+        portfolio-footer
+        relative
+        mt-0
+        overflow-hidden
+        px-5
+        pb-8
+        pt-16
+        md:px-10
+        md:pt-24
         lg:px-20
         xl:px-32
       "
     >
-      {/* STAR BACKGROUND */}
+      {/* STAR */}
       <div
         aria-hidden="true"
         className="
           footer-star
           pointer-events-none
           absolute
-          bottom-[-125px]
+          bottom-[-185px]
           left-1/2
           z-0
-          h-[300px]
-          w-[430px]
+          h-[320px]
+          w-[470px]
           -translate-x-1/2
 
-          md:bottom-[-170px]
-          md:h-[430px]
-          md:w-[660px]
+          md:bottom-[-245px]
+          md:h-[470px]
+          md:w-[720px]
 
-          lg:bottom-[-210px]
-          lg:h-[520px]
-          lg:w-[820px]
+          lg:bottom-[-290px]
+          lg:h-[580px]
+          lg:w-[900px]
         "
       >
         <FooterStar className="block h-full w-full" />
       </div>
 
-      {/* MAIN CONTENT */}
+      {/* CONTENT */}
       <div className="relative z-20">
         <p className="footer-kicker mb-4 text-base md:text-xl">
           Let&apos;s talk
@@ -159,14 +157,16 @@ export default function Footer() {
         {/* LINKS */}
         <div
           className="
-            relative z-20
+            relative
+            z-20
             mt-14
-            grid grid-cols-12
-            items-end gap-4
+            grid
+            grid-cols-12
+            items-end
+            gap-4
             md:mt-20
           "
         >
-          {/* SAY HELLO */}
           <a
             href="mailto:TUEMAIL"
             className="
@@ -201,22 +201,26 @@ export default function Footer() {
             </span>
           </a>
 
-          {/* LINKEDIN */}
           <a
             href="#"
             className="
-              footer-link
-              group
-              col-span-6
-              inline-flex
-              w-fit
-              items-center
-              gap-3
-              text-base
-              md:col-span-2
-              md:col-start-8
-              md:text-2xl
-            "
+    footer-link
+    group
+    col-span-6
+    inline-flex
+    w-fit
+    items-center
+    gap-3
+    text-base
+
+    md:col-span-3
+    md:col-start-7
+    md:text-xl
+
+    lg:col-span-2
+    lg:col-start-8
+    lg:text-2xl
+  "
           >
             <span className="animated-underline">
               LinkedIn
@@ -225,33 +229,38 @@ export default function Footer() {
             <span
               aria-hidden="true"
               className="
-                text-[var(--accent)]
-                transition-transform
-                duration-300
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-                group-hover:translate-x-[3px]
-                group-hover:-translate-y-[3px]
-              "
+      text-[var(--accent)]
+      transition-transform
+      duration-300
+      ease-[cubic-bezier(0.22,1,0.36,1)]
+      group-hover:translate-x-[3px]
+      group-hover:-translate-y-[3px]
+    "
             >
               ↗
             </span>
           </a>
 
-          {/* CV */}
           <a
             href="/cv.pdf"
             className="
-              footer-link
-              group
-              col-span-6
-              inline-flex
-              w-fit
-              items-center
-              gap-3
-              text-base
-              md:col-span-2
-              md:text-2xl
-            "
+    footer-link
+    group
+    col-span-6
+    inline-flex
+    w-fit
+    items-center
+    gap-3
+    text-base
+
+    md:col-span-2
+    md:col-start-11
+    md:text-xl
+
+    lg:col-span-2
+    lg:col-start-auto
+    lg:text-2xl
+  "
           >
             <span className="animated-underline">
               CV
@@ -260,13 +269,13 @@ export default function Footer() {
             <span
               aria-hidden="true"
               className="
-                text-[var(--accent)]
-                transition-transform
-                duration-300
-                ease-[cubic-bezier(0.22,1,0.36,1)]
-                group-hover:translate-x-[3px]
-                group-hover:-translate-y-[3px]
-              "
+      text-[var(--accent)]
+      transition-transform
+      duration-300
+      ease-[cubic-bezier(0.22,1,0.36,1)]
+      group-hover:translate-x-[3px]
+      group-hover:-translate-y-[3px]
+    "
             >
               ↗
             </span>
@@ -274,15 +283,18 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* FOOTER BOTTOM */}
+      {/* BOTTOM */}
       <div
         className="
           footer-bottom
-          relative z-20
+          relative
+          z-20
           mt-10
-          flex items-end
+          flex
+          items-end
           justify-between
-          border-t border-black/15
+          border-t
+          border-[var(--line)]
           pt-6
           md:mt-12
           md:pt-7
@@ -293,7 +305,12 @@ export default function Footer() {
           alt="Marina B."
           width={220}
           height={80}
-          className="h-auto w-[90px] md:w-[115px]"
+          className="
+            theme-logo
+            h-auto
+            w-[90px]
+            md:w-[115px]
+          "
         />
 
         <p className="text-[9px] uppercase md:text-xs">

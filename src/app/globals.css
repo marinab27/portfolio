@@ -9,9 +9,73 @@
   --soft-beige: #eee2cd;
   --line: #d8d8d2;
 
+  /* About star */
+  --star-fill: #dde4f6;
+
+  /* Footer star */
+  --footer-star-color: #b8c6f4;
+  --footer-star-opacity: 0.52;
+
+  /* Theme toggle */
+  --theme-toggle-background: rgba(247, 246, 242, 0.5);
+  --theme-toggle-border: rgba(37, 38, 43, 0.18);
+  --theme-toggle-active: rgba(255, 255, 255, 0.72);
+  --theme-icon-inactive: rgba(37, 38, 43, 0.68);
+
+  /* About + Footer transition */
+  --about-gradient-start: rgba(247, 246, 242, 0);
+  --about-gradient-mid: rgba(221, 228, 246, 0.34);
+  --about-gradient-end: rgba(221, 228, 246, 0.72);
+
+  /* Footer gradient */
+  --footer-gradient-start: rgba(247, 246, 242, 0);
+  --footer-gradient-mid: rgba(221, 228, 246, 0.38);
+  --footer-gradient-end: rgba(199, 211, 246, 0.72);
+
   /* Motion system */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-swipe: cubic-bezier(0.76, 0, 0.24, 1);
+
+  color-scheme: light;
+}
+
+/* --------------------------------
+   DARK MODE
+-------------------------------- */
+
+[data-theme="dark"] {
+  --background: #121416;
+  --foreground: #eeeeec;
+
+  --accent: #6f8cff;
+  --soft-blue: #1a2340;
+  --soft-beige: #23211f;
+  --line: #343942;
+
+  /* About star */
+  --star-fill: #aebcff;
+
+  /* Footer star */
+  --footer-star-color: #aebcff;
+  --footer-star-opacity: 0.24;
+
+  /* Theme toggle */
+  --theme-toggle-background: rgba(255, 255, 255, 0.015);
+  --theme-toggle-border: rgba(238, 238, 236, 0.24);
+  --theme-toggle-active: rgba(111, 140, 255, 0.09);
+  --theme-icon-inactive: rgba(238, 238, 236, 0.55);
+
+  /* About + Footer transition */
+  --about-gradient-start: rgba(18, 20, 22, 0);
+  --about-gradient-mid: rgba(24, 35, 70, 0.92);
+  --about-gradient-end: rgba(43, 67, 135, 1);
+
+  /* Footer gradient */
+  --footer-gradient-start: rgba(18, 20, 22, 0);
+  --footer-gradient-mid: rgba(29, 45, 88, 0.96);
+  --footer-gradient-end: rgba(63, 92, 180, 1);
+
+  color-scheme: dark;
 }
 
 /* --------------------------------
@@ -24,6 +88,11 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
+
+  transition:
+    background-color 500ms var(--ease-out),
+    color 500ms var(--ease-out);
 }
 
 body {
@@ -33,6 +102,10 @@ body {
   color: var(--foreground);
 
   font-family: Arial, Helvetica, sans-serif;
+
+  transition:
+    background-color 500ms var(--ease-out),
+    color 500ms var(--ease-out);
 }
 
 a {
@@ -49,6 +122,36 @@ select {
 
 button {
   color: inherit;
+}
+
+/* --------------------------------
+   LOGO
+-------------------------------- */
+
+.theme-logo {
+  transition:
+    filter 500ms var(--ease-out),
+    opacity 300ms ease;
+}
+
+[data-theme="dark"] .theme-logo {
+  filter: invert(1);
+}
+
+/* --------------------------------
+   ABOUT HANDWRITTEN NOTE
+-------------------------------- */
+
+.about-note-image {
+  filter: none;
+
+  transition:
+    filter 500ms var(--ease-out),
+    opacity 300ms ease;
+}
+
+[data-theme="dark"] .about-note-image {
+  filter: invert(1);
 }
 
 /* --------------------------------
@@ -82,6 +185,24 @@ button:focus-visible {
 }
 
 /* --------------------------------
+   THEME TOGGLE
+-------------------------------- */
+
+.theme-toggle {
+  transition:
+    background-color 500ms var(--ease-out),
+    border-color 500ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .theme-toggle:hover {
+    border-color: color-mix(in srgb,
+        var(--accent) 45%,
+        transparent);
+  }
+}
+
+/* --------------------------------
    CURSOR GLOW
 -------------------------------- */
 
@@ -101,6 +222,16 @@ button:focus-visible {
       rgba(207, 218, 250, 0.22) 35%,
       rgba(221, 228, 246, 0.08) 58%,
       transparent 75%);
+
+  transition: opacity 500ms var(--ease-out);
+}
+
+[data-theme="dark"] .cursor-glow {
+  background: radial-gradient(circle 380px at var(--mouse-x) var(--mouse-y),
+      rgba(74, 103, 205, 0.34) 0%,
+      rgba(54, 81, 172, 0.18) 36%,
+      rgba(43, 62, 122, 0.075) 60%,
+      transparent 76%);
 }
 
 /* --------------------------------
@@ -121,6 +252,12 @@ button:focus-visible {
 
   background-repeat: repeat;
   background-size: 180px 180px;
+
+  transition: opacity 500ms var(--ease-out);
+}
+
+[data-theme="dark"] .grain {
+  opacity: 0.035;
 }
 
 /* --------------------------------
@@ -191,13 +328,12 @@ button:focus-visible {
   height: 1px;
 
   background-color: var(--accent);
+
   opacity: 0.75;
 
   transform: scaleX(1);
   transform-origin: left center;
 }
-
-/* Desktop / mouse */
 
 @media (hover: hover) and (pointer: fine) {
 
@@ -253,6 +389,30 @@ button:focus-visible {
     transform:
       translateY(-50%) scale(1);
   }
+}
+
+/* --------------------------------
+   ABOUT + FOOTER GRADIENT
+-------------------------------- */
+
+.about-footer-gradient {
+  background:
+    linear-gradient(to bottom,
+      var(--about-gradient-start) 0%,
+      var(--about-gradient-mid) 46%,
+      var(--about-gradient-end) 100%);
+}
+
+/* --------------------------------
+   FOOTER GRADIENT
+-------------------------------- */
+
+.portfolio-footer {
+  background:
+    linear-gradient(to bottom,
+      var(--footer-gradient-start) 0%,
+      var(--footer-gradient-mid) 38%,
+      var(--footer-gradient-end) 100%);
 }
 
 /* --------------------------------

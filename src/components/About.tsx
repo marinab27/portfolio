@@ -67,7 +67,6 @@ export default function About() {
           );
 
           // STAR
-          // Entrada sutil, sin tocar opacity.
           tl.from(
             ".about-star",
             {
@@ -81,7 +80,6 @@ export default function About() {
           );
 
           // CTA
-          // No animamos opacity para evitar que pueda quedar invisible.
           tl.from(
             ".about-cta",
             {
@@ -156,7 +154,6 @@ export default function About() {
           );
 
           // CTA
-          // Igual que en desktop: siempre visible.
           tl.from(
             ".about-cta",
             {
@@ -213,7 +210,7 @@ export default function About() {
               alt="that's me"
               width={340}
               height={160}
-              className="h-auto w-full"
+              className="about-note-image h-auto w-full"
             />
           </div>
 
@@ -224,11 +221,11 @@ export default function About() {
               about-star
               pointer-events-none
               absolute
-              -left-10
-              top-[15%]
+              -left-16
+              top-[8%]
               z-20
-              h-[82px]
-              w-[82px]
+              h-[122px]
+              w-[122px]
             "
           >
             <AboutStar className="block h-full w-full" />
@@ -319,7 +316,7 @@ export default function About() {
               alt="that's me"
               width={340}
               height={160}
-              className="h-auto w-full"
+              className="about-note-image h-auto w-full"
             />
           </div>
 
@@ -330,14 +327,16 @@ export default function About() {
               about-star
               pointer-events-none
               absolute
-              -left-16
-              top-[13%]
+              -left-24
+              top-[6%]
               z-20
-              h-[110px]
-              w-[110px]
-              lg:-left-24
-              lg:h-[140px]
-              lg:w-[140px]
+              h-[165px]
+              w-[165px]
+
+              lg:-left-32
+              lg:top-[5%]
+              lg:h-[205px]
+              lg:w-[205px]
             "
           >
             <AboutStar className="block h-full w-full" />

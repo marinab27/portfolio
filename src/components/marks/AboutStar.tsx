@@ -17,8 +17,11 @@ export default function AboutStar({
         if (!star) return;
 
         const handlePointerMove = (event: PointerEvent) => {
-            const x = event.clientX / window.innerWidth - 0.5;
-            const y = event.clientY / window.innerHeight - 0.5;
+            const x =
+                event.clientX / window.innerWidth - 0.5;
+
+            const y =
+                event.clientY / window.innerHeight - 0.5;
 
             const moveX = x * 8;
             const moveY = y * 8;
@@ -30,10 +33,16 @@ export default function AboutStar({
       `;
         };
 
-        window.addEventListener("pointermove", handlePointerMove);
+        window.addEventListener(
+            "pointermove",
+            handlePointerMove,
+        );
 
         return () => {
-            window.removeEventListener("pointermove", handlePointerMove);
+            window.removeEventListener(
+                "pointermove",
+                handlePointerMove,
+            );
         };
     }, []);
 
@@ -46,29 +55,45 @@ export default function AboutStar({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             style={{
-                transition: "transform 220ms ease-out",
+                transition:
+                    "transform 220ms ease-out",
             }}
         >
             <path
                 d="
-          M106 12
-          L124 76
-          L190 42
-          L145 96
-          L210 118
-          L143 126
-          L168 202
-          L112 148
-          L72 198
-          L86 139
-          L14 170
-          L73 119
-          L8 91
-          L82 96
+          M108 104
+          L82 22
+          L118 96
+
+          L174 12
+          L127 103
+
+          L209 88
+          L132 111
+
+          L201 151
+          L128 119
+
+          L151 207
+          L116 128
+
+          L70 211
+          L106 127
+
+          L15 157
+          L98 117
+
+          L8 86
+          L96 106
+
           Z
         "
-                fill="#DDE4F6"
+                fill="var(--star-fill)"
                 fillOpacity="1"
+                style={{
+                    transition:
+                        "fill 500ms var(--ease-out)",
+                }}
             />
         </svg>
     );

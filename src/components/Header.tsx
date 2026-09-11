@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import ThemeToggle from "@/components/ThemeToggle";
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -17,7 +19,12 @@ export default function Header() {
             width={220}
             height={80}
             priority
-            className="h-auto w-[105px] md:w-[125px]"
+            className="
+              theme-logo
+              h-auto
+              w-[105px]
+              md:w-[125px]
+            "
           />
         </div>
 
@@ -35,8 +42,21 @@ export default function Header() {
           <a href="/cv.pdf">CV</a>
         </nav>
 
-        {/* CONTACT — DESKTOP */}
-        <div className="hidden text-right text-xs uppercase md:col-span-3 md:block">
+        {/* CONTACT + THEME — DESKTOP */}
+        <div
+          className="
+            hidden
+            text-right
+            text-xs
+            uppercase
+
+            md:col-span-3
+            md:flex
+            md:flex-col
+            md:items-end
+            md:gap-5
+          "
+        >
           <a
             href="#contact"
             className="group inline-flex items-center gap-2"
@@ -48,42 +68,87 @@ export default function Header() {
             <span
               aria-hidden="true"
               className="
-      text-[var(--accent)]
-      transition-transform
-      duration-300
-      ease-[cubic-bezier(0.22,1,0.36,1)]
-      group-hover:translate-x-1
-    "
+                text-[var(--accent)]
+                transition-transform
+                duration-300
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                group-hover:translate-x-1
+              "
             >
               →
             </span>
           </a>
+
+          <ThemeToggle />
         </div>
 
-        {/* HAMBURGER — MOBILE */}
-        <div className="col-span-6 flex justify-end md:hidden">
+        {/* MOBILE CONTROLS */}
+        <div
+          className="
+            col-span-6
+            flex
+            items-center
+            justify-end
+            gap-3
+            md:hidden
+          "
+        >
+          <ThemeToggle />
+
+          {/* HAMBURGER */}
           <button
             type="button"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={() =>
+              setMenuOpen((prev) => !prev)
+            }
             aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="relative flex h-8 w-8 items-center justify-center"
+            aria-label={
+              menuOpen
+                ? "Close menu"
+                : "Open menu"
+            }
+            className="
+              relative
+              flex
+              h-8
+              w-8
+              items-center
+              justify-center
+            "
           >
             <span
               className={`
-                absolute h-px w-5 bg-current
-                transition-transform duration-300
+                absolute
+                h-px
+                w-5
+                bg-current
+
+                transition-transform
+                duration-300
                 ease-[cubic-bezier(0.22,1,0.36,1)]
-                ${menuOpen ? "translate-y-0 rotate-45" : "-translate-y-[3px]"}
+
+                ${menuOpen
+                  ? "translate-y-0 rotate-45"
+                  : "-translate-y-[3px]"
+                }
               `}
             />
 
             <span
               className={`
-                absolute h-px w-5 bg-current
-                transition-transform duration-300
+                absolute
+                h-px
+                w-5
+                bg-current
+
+                transition-transform
+                duration-300
                 ease-[cubic-bezier(0.22,1,0.36,1)]
-                ${menuOpen ? "translate-y-0 -rotate-45" : "translate-y-[3px]"}
+
+                ${menuOpen
+                  ? "translate-y-0 -rotate-45"
+                  : "translate-y-[3px]"
+                }
               `}
             />
           </button>
@@ -94,10 +159,13 @@ export default function Header() {
       <div
         className={`
           overflow-hidden
+
           transition-[max-height,opacity,margin]
           duration-500
           ease-[cubic-bezier(0.22,1,0.36,1)]
+
           md:hidden
+
           ${menuOpen
             ? "mt-10 max-h-[360px] opacity-100"
             : "mt-0 max-h-0 opacity-0"
@@ -106,15 +174,29 @@ export default function Header() {
       >
         <nav className="border-t border-[var(--line)]">
           {[
-            { label: "About", href: "#about" },
-            { label: "Projects", href: "#projects" },
-            { label: "CV", href: "/cv.pdf" },
-            { label: "Let's talk", href: "#contact" },
+            {
+              label: "About",
+              href: "#about",
+            },
+            {
+              label: "Projects",
+              href: "#projects",
+            },
+            {
+              label: "CV",
+              href: "/cv.pdf",
+            },
+            {
+              label: "Let's talk",
+              href: "#contact",
+            },
           ].map((item, index) => (
             <a
               key={item.label}
               href={item.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={() =>
+                setMenuOpen(false)
+              }
               className={`
                 group
                 flex
@@ -124,7 +206,11 @@ export default function Header() {
                 text-[1.35rem]
                 font-normal
                 tracking-[-0.02em]
-                ${index < 3 ? "border-b border-[var(--line)]" : ""}
+
+                ${index < 3
+                  ? "border-b border-[var(--line)]"
+                  : ""
+                }
               `}
             >
               <span>{item.label}</span>
